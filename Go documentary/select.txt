@@ -1,0 +1,11 @@
+CHANNELS AND SELECT STATEMENT
+
+
+The select statement in Go is used to allow a program to try reading from or writing to a number of channels all at the same time.
+Only one channel operation happens per select statement, but when performed in a loop, the program can do a number of channel operations when one becomes available.
+A select statement is created by using the keyword select, followed by a code block enclosed in curly braces ({}), with one or more case statements inside the code block.
+Each case statement can be either a channel read or write operation, and the select statement will block until one of the case statements can be executed.
+Suppose you don’t want the select statement to block, though. In that case, you can also add a default statement that will be executed immediately if none of the 
+other case statements can be executed. It looks and works similarly to a switch statement, but for channels.
+
+The select statement is used to handle differennt concurrent programmes, it will return any case once it provided the case exists.

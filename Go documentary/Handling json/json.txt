@@ -1,0 +1,11 @@
+Most JSON is represented as an object, with a string key and various other types as values.
+Because of this, the most flexible way to generate JSON data in Go is by putting data into a map 
+using string keys and interface{} values. The string key can be directly translated to a JSON object key, 
+and the interface{} value allows the value to be any other value, whether it’s a string, an int, or even another map[string]interface{}.
+
+Struct tag is like telling json.Maeshal what you expect the field to be named in the JSON data.
+
+The unmarshal function takes two values. You provide json.Unmarshal 
+with the JSON data as well as the Go variable to put the unmarshalled 
+data into and it will either return an error value if it’s unable to do it, 
+or a nil error value if it succeeded. 
