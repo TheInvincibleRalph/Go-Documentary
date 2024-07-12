@@ -1,3 +1,6 @@
+# Different Ways to Initialize a Struct In Go
+
+
 In Go, there are several ways to create an instance of a struct. 
 
 ```go
