@@ -1,6 +1,7 @@
 In Go, there are several ways to create an instance of a struct. 
 
-```type Comment struct {
+```go
+type Comment struct {
 	Text string `form:"text" json:"text"`
 }
 ```
