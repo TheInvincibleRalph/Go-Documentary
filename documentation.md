@@ -57,3 +57,6 @@ cmt = &Comment{}
 This declares a variable `cmt` of type `*Comment` and then assigns it to a new `Comment` instance.
 
 Each method has its own use case depending on whether you need a pointer to the struct or just the struct value.
+
+
+In Go, nil is used for pointers, interfaces, maps, slices, channels, and function types. For value types like int, there is no nil value; instead, the zero value for int is 0.
