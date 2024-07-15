@@ -53,3 +53,23 @@ func getRandomNumber() int {
 	rand.Seed(time.Now().Unix())
 	return rand.Int() % 11
 }
+
+// func grade() {
+// 	score := 120
+
+// 	if score < 49 {
+// 		fmt.Println("Your grade  is D")
+// 	} else if score > 49 && score <= 59 {
+// 		fmt.Println("Your grade  is C")
+// 	} else if score > 59 && score <= 69 {
+// 		fmt.Println("Your grade  is B")
+// 	} else if score > 69 && score <= 100 {
+// 		fmt.Println("Your grade  is A")
+// 	} else {
+// 		fmt.Println("Score out of range")
+// 	}
+// }
+
+// func main() {
+// 	grade()
+// }
