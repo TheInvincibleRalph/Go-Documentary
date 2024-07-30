@@ -1,3 +1,5 @@
+# strings.Builder Type
+
 In Go, the `strings.Builder` type from the `strings` package is a highly efficient way to build and concatenate strings. It's particularly useful when you need to construct a string from many smaller pieces, as it helps avoid the overhead associated with repeated string concatenation.
 
 ### Key Features of `strings.Builder`
