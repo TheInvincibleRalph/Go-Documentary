@@ -244,3 +244,83 @@ func main() {
 - **Data Processing**: If you need to process strings in a piece-by-piece manner (like parsing or scanning), `strings.Reader` is handy.
 - **Compatibility**: Use `strings.Reader` when you have APIs that require an `io.Reader`, but your data is already in string form.
 
+
+## The Seek Method
+
+The `Seek` method in Go's `strings.Reader` (as well as in other types that implement the `io.Seeker` interface) allows you to change the current reading position within the string. This is useful when you need to re-read data, skip over parts of the data, or start reading from a specific position.
+
+### How `Seek` Works
+
+The `Seek` method changes the position of the internal cursor in the `Reader` to a new position specified by an offset and a reference point. The reference point, known as `whence`, determines from where the offset is applied.
+
+### `Seek` Parameters
+
+- **offset**: This is the number of bytes to move the cursor. The direction of movement depends on whether the value is positive or negative.
+- **whence**: This determines from which point the offset is applied. It can take one of three constants:
+  - `io.SeekStart`: Seek relative to the start of the string. The offset is counted from the beginning.
+  - `io.SeekCurrent`: Seek relative to the current position. The offset moves the cursor from its current location.
+  - `io.SeekEnd`: Seek relative to the end of the string. The offset is counted from the end of the string.
+
+### `Seek` Return Value
+
+- The method returns the new offset from the beginning of the string as a result, and an error if the operation fails (e.g., if the new position is out of range).
+
+### Example
+
+Here's an example that demonstrates how to use the `Seek` method:
+
+```go
+package main
+
+import (
+	"fmt"
+	"strings"
+	"io"
+)
+
+func main() {
+	r := strings.NewReader("Hello, World!")
+
+	// Seek to the beginning of the string (0 bytes from the start)
+	pos, err := r.Seek(0, io.SeekStart)
+	if err != nil {
+		fmt.Println("Seek error:", err)
+		return
+	}
+	fmt.Println("Position after seeking to start:", pos) // Output: 0
+
+	// Read and print one byte
+	b, _ := r.ReadByte()
+	fmt.Printf("Read byte: %c\n", b) // Output: H
+
+	// Seek 7 bytes from the current position
+	pos, err = r.Seek(7, io.SeekCurrent)
+	if err != nil {
+		fmt.Println("Seek error:", err)
+		return
+	}
+	fmt.Println("Position after seeking 7 bytes forward:", pos) // Output: 8
+
+	// Read and print the next byte
+	b, _ = r.ReadByte()
+	fmt.Printf("Read byte: %c\n", b) // Output: W
+
+	// Seek 1 byte back from the end of the string
+	pos, err = r.Seek(-1, io.SeekEnd)
+	if err != nil {
+		fmt.Println("Seek error:", err)
+		return
+	}
+	fmt.Println("Position after seeking to 1 byte before end:", pos) // Output: 12
+
+	// Read and print the last byte
+	b, _ = r.ReadByte()
+	fmt.Printf("Read byte: %c\n", b) // Output: d
+}
+```
+
+### Key Points
+
+- **Flexibility**: `Seek` provides the flexibility to move the read cursor to any point in the string, making it useful for random access within the data.
+- **Error Handling**: Always handle potential errors from `Seek`, especially when dealing with offsets that could be out of the valid range.
+- **Return Position**: The returned position is useful for verifying where the cursor is after seeking, ensuring that subsequent reads are accurate.
