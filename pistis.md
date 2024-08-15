@@ -19,3 +19,7 @@
 For VSCode, all I had to do was just navigate to the official VSCode download page at [VSCode](https://code.visualstudio.com/), then clicked on the `Download for Windows` button. Once the installer is downloaded, I then double-clicked to launch it. The rest was just to follow the installation wizard, boom my VSCode is up and running!
 
 Git is easy, I just visited the [official Git page](https://git-scm.com/) and clicked on `Download for Windows` and waited for it to be downloaded.
+
+**Screenhorts**
+
+![Git](git version.png "Git")
