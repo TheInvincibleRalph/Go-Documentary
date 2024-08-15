@@ -22,4 +22,4 @@ Git is easy, I just visited the [official Git page](https://git-scm.com/) and cl
 
 **Screenhorts**
 
-![Git](vscode.png "Git")
+![Git](c:\Users\HP\Pictures\Screenshots\vscode.png "Git")
