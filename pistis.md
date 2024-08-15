@@ -20,6 +20,6 @@ For VSCode, all I had to do was just navigate to the official VSCode download pa
 
 Git is easy, I just visited the [official Git page](https://git-scm.com/) and clicked on `Download for Windows` and waited for it to be downloaded.
 
-**Screenhorts**
+**Screenshorts**
 
 [Git & Vscode](https://drive.google.com/drive/folders/1NlzNvsOBZry3WnCicltmnb7ayM3R7MRx)
