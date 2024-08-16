@@ -22,4 +22,4 @@ Git is easy, I just visited the [official Git page](https://git-scm.com/) and cl
 
 **Screenshots**
 
-[Git & Vscode](https://drive.google.com/drive/folders/1NlzNvsOBZry3WnCicltmnb7ayM3R7MRx)
+![Screenshots](C:\path\to\getting-started-app\screenshots)
