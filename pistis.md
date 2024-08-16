@@ -22,4 +22,6 @@ Git is easy, I just visited the [official Git page](https://git-scm.com/) and cl
 
 **Screenshots**
 
-![Screenshots](C:\path\to\getting-started-app\screenshots)
+![Screenshots](C:\path\to\getting-started-app\screenshots\git version.png)
+
+![Screenshots](C:\path\to\getting-started-app\screenshots\vscode.png)
