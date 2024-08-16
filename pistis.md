@@ -23,7 +23,21 @@ Git is easy, I just visited the [official Git page](https://git-scm.com/) and cl
 **Screenshots**
 
 > VSCode
+
 ![Screenshots](/screenshots/vscode.png)
 
 > Git
+
 ![Screenshots](/screenshots/git%20version.png)
+
+> Installing SSH
+
+![Screenshots](/screenshots/ssh-install.png)
+
+> Generating Public Key
+
+![Screenshots](/screenshots/generating%20publickey.png)
+
+> Public Key Generated
+
+![Screenshots](/screenshots/public%20key.png)
