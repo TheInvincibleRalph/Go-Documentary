@@ -24,5 +24,6 @@ Git is easy, I just visited the [official Git page](https://git-scm.com/) and cl
 
 > VSCode
 ![Screenshots](/screenshots/vscode.png)
+
 > Git
 ![Screenshots](/screenshots/git%20version.png)
