@@ -1,3 +1,5 @@
+## Infomation contained in an Http Request (from a server perspective)
+
 In Go, an `http.Request` provides various pieces of information about the incoming HTTP request. Here's a breakdown of what you can access:
 
 ### 1. **Request Method**
@@ -58,7 +60,9 @@ func handler(w http.ResponseWriter, r *http.Request) {
 
 This allows you to get almost all relevant information about the incoming HTTP request in Go.
 
-### Creating Go Clients amd the use of Pointers
+---
+
+## Creating Go Clients amd the use of Pointers
 
 The reason we use a pointer (`&http.Client{}`) to create an `http.Client` in Go is mainly due to how Go handles struct types and pointers, as well as the intended use of the `http.Client` for making multiple requests. Here are the key reasons:
 
@@ -103,3 +107,95 @@ client := http.Client{}
 
 ### Conclusion
 Using a pointer to create an `http.Client` allows for **efficient reuse**, supports **connection pooling**, and ensures that any modifications to the client (like setting timeouts or custom transports) are reflected across the program. This makes it the standard and recommended approach in Go for HTTP clients.
+
+---
+
+## Infomation contained in an Http Response (from a client perspective)
+
+An HTTP response in Go, represented by the `http.Response` struct, contains various pieces of information about the response received from an HTTP server. Here’s a breakdown of the key fields in the `http.Response` object:
+
+### 1. **Status Code**
+   - `response.StatusCode`: This field holds the HTTP status code (e.g., `200 OK`, `404 Not Found`, etc.).
+   - Example: `fmt.Println(response.StatusCode)` might print `200`.
+
+### 2. **Status Text**
+   - `response.Status`: This is a string representation of the status code, including both the numeric code and the reason phrase (e.g., `200 OK`, `404 Not Found`).
+   - Example: `fmt.Println(response.Status)` might print `200 OK`.
+
+### 3. **Headers**
+   - `response.Header`: A map containing the HTTP headers returned by the server. Each header field (e.g., `Content-Type`, `Content-Length`) can be accessed as `response.Header.Get("Header-Name")`.
+   - Example: `fmt.Println(response.Header.Get("Content-Type"))` might print `application/json`.
+
+### 4. **Body**
+   - `response.Body`: The body of the response, containing the actual data returned by the server. This is an `io.ReadCloser`, so you typically need to read and close it after processing.
+   - Example of reading the body:
+     ```go
+     body, err := ioutil.ReadAll(response.Body)
+     if err != nil {
+         log.Fatal(err)
+     }
+     defer response.Body.Close()  // Always close the body
+     fmt.Println(string(body))
+     ```
+
+### 5. **Content Length**
+   - `response.ContentLength`: The size of the response body in bytes, as provided by the `Content-Length` header. If the length is unknown, the value will be `-1`.
+   - Example: `fmt.Println(response.ContentLength)`.
+
+### 6. **Request**
+   - `response.Request`: A pointer to the `http.Request` that generated this response. This can be useful for debugging purposes or for inspecting the original request that led to the response.
+   - Example: `fmt.Println(response.Request.URL)`.
+
+### 7. **Protocol Version**
+   - `response.Proto`: The protocol version (e.g., `HTTP/1.1`, `HTTP/2.0`).
+   - `response.ProtoMajor` and `response.ProtoMinor`: These fields represent the major and minor version of the HTTP protocol used (e.g., `1.1` or `2.0`).
+
+### 8. **Cookies**
+   - `response.Cookies()`: A method to retrieve cookies from the response as a slice of `http.Cookie`.
+   - Example: `cookies := response.Cookies()`.
+
+### 9. **Trailer**
+   - `response.Trailer`: Like the `Header` field, but used for **trailing headers** that might be sent after the response body (if the server supports chunked transfer encoding).
+   - Example: `fmt.Println(response.Trailer)`.
+
+### 10. **Transfer Encoding**
+   - `response.TransferEncoding`: A slice of strings representing the transfer encoding types applied to the response body (e.g., `chunked`).
+
+### 11. **Uncompressed**
+   - `response.Uncompressed`: A boolean value indicating whether the response body has been decompressed by the Go HTTP client automatically. This happens if the `Accept-Encoding` header is set to support compression (e.g., gzip).
+
+### 12. **TLS Connection State**
+   - `response.TLS`: If the response was received over an HTTPS connection, this field contains information about the TLS connection, such as the server certificates and the security settings.
+
+### Example: Accessing HTTP Response Fields
+```go
+resp, err := http.Get("http://example.com")
+if err != nil {
+    log.Fatal(err)
+}
+defer resp.Body.Close()
+
+// Status code
+fmt.Println("Status Code:", resp.StatusCode)
+
+// Status
+fmt.Println("Status:", resp.Status)
+
+// Headers
+fmt.Println("Content-Type:", resp.Header.Get("Content-Type"))
+
+// Body
+body, err := ioutil.ReadAll(resp.Body)
+if err != nil {
+    log.Fatal(err)
+}
+fmt.Println("Body:", string(body))
+
+// Cookies
+for _, cookie := range resp.Cookies() {
+    fmt.Println("Cookie:", cookie.Name, cookie.Value)
+}
+```
+
+### Summary
+An HTTP response contains critical information such as the **status code**, **headers**, **body**, and various metadata about the response (e.g., protocol version, cookies, TLS details, etc.). Each piece helps in understanding the server's response to an HTTP request.
