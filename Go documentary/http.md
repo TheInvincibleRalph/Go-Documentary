@@ -1,4 +1,4 @@
-## Infomation contained in an Http Request (from a server perspective)
+## Information contained in an Http Request (from a server perspective)
 
 In Go, an `http.Request` provides various pieces of information about the incoming HTTP request. Here's a breakdown of what you can access:
 
@@ -110,7 +110,7 @@ Using a pointer to create an `http.Client` allows for **efficient reuse**, suppo
 
 ---
 
-## Infomation contained in an Http Response (from a client perspective)
+## Information contained in an Http Response (from a client perspective)
 
 An HTTP response in Go, represented by the `http.Response` struct, contains various pieces of information about the response received from an HTTP server. Here’s a breakdown of the key fields in the `http.Response` object:
 
@@ -199,3 +199,4 @@ for _, cookie := range resp.Cookies() {
 
 ### Summary
 An HTTP response contains critical information such as the **status code**, **headers**, **body**, and various metadata about the response (e.g., protocol version, cookies, TLS details, etc.). Each piece helps in understanding the server's response to an HTTP request.
+
